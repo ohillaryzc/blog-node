@@ -30,19 +30,7 @@ function findMD5 (req, callback, res) {
               token: uid,
               expire_time: new Date(new Date().valueOf() + 24 * 3600 * 1000)
             }
-            if (!result.length) {
-              // 生成token
-              addToken(token, (err, result) => {
-                if (err) return callback(err, null)
-                if (result.affectedRows) {
-                  res && res.setHeader('Set-Cookie', [
-                    `user=${user.id}; httpOnly=true; max-age=${60 * 60 * 24}`,
-                    `token=${uid}; httpOnly=true; max-age=${60 * 60 * 24}`
-                  ])
-                  callback(null, user)
-                }
-              })
-            } else {
+            if (result.length) {
               updateToken(token, (err, result) => {
                 if (err) return callback(err, null)
                 if (result.affectedRows) {
@@ -50,7 +38,19 @@ function findMD5 (req, callback, res) {
                     `user=${user.id}; httpOnly=true; max-age=${60 * 60 * 24}`,
                     `token=${uid}; httpOnly=true; max-age=${60 * 60 * 24}`
                   ])
-                  callback(null, user)
+                  callback(null, {status: 0, data: {id: user.id, type: user.type, name: user.name}})
+                }
+              })
+            } else {
+              // 生成token
+              addToken(token, (err, result) => {
+                if (err) return callback(err, null)
+                if (result.affectedRows) {
+                  res && res.setHeader('Set-Cookie', [
+                    `user=${user.id}; httpOnly=true; max-age=${60 * 60 * 25}`,
+                    `token=${uid}; httpOnly=true; max-age=${60 * 60 * 24}`
+                  ])
+                  callback(null, { status: 0, data: {id: user.id, type: user.type, name: user.name} })
                 }
               })
             }
@@ -102,7 +102,8 @@ function findUserByToken (req, callback) {
       if (token === cookie.token) {
         dao.findMD5ById(cookie.user, (err, users) => {
           if (err) return callback(err, null)
-          callback(null, users[0])
+          let user = users[0]
+          callback(null, { status: 0, data: { id: user.id, type: user.type, name: user.name } })
         })
       } else {
         callback(null, {error: 1, message: '无效cookie，请重新输入登录码。'})
