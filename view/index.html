@@ -1,0 +1,63 @@
+{{extend '/start/node_blog/view/layout.html'}}
+
+{{block 'title'}} {{title}} {{/block}}
+
+{{block 'style'}}
+<link rel="stylesheet" href="/public/css/index.css">
+{{/block}}
+
+{{block 'content'}}
+<!-- 中间部分（主体部分） -->
+<div class="container">
+    <!-- 放置博客内容 -->
+    <div class="content">
+        {{each articles item key}}
+        <div class="blog-item">
+            <p class="blog-title">
+                <a href="{{'/blog/detail/' + pageNum + '-' + item.id + '-' + key}}">{{item.title}}</a>
+                <span class="tip" style="background: {{classify['C' + item.classify].color}}"></span>
+                <span>{{classify['C' + item.classify].name}}</span>
+            </p>
+            <p class="blog-item-des">{{@ item.description}}</p>
+            <p class="blog-time">
+                <span><i class="iconfont icon-publish"></i>发布：{{item.add_time}}</span>
+                <span><i class="iconfont icon-update-time"></i>更新：{{item.last_time}}</span>
+                <span><i class="iconfont icon-eye1"></i>浏览：{{item.views}}</span>
+            </p>
+        </div>
+        {{/each}}
+        <div class="more">
+          {{if proPage}}
+          <div class="page pro">
+            <a href="{{'/page/' + proPage}}"> < 上一页</a>
+          </div>
+          {{/if}}
+          {{if nextPage}}
+          <div class="page next">
+            <a href="{{'/page/' + nextPage}}">下一页 > </a>
+          </div>
+          {{/if}}
+        </div>
+    </div>
+    <!-- 简介 -->
+    <div class="info">
+        <div class="info-item master">
+            <div class="avatar"><img src="{{ info.avatar_path }}" alt="" width="100%"></div>
+            <p class="name">{{ info.name }}</p>
+            <p class="my-motto">{{ info.motto }}</p>
+            <!-- 文章总数、标签 -->
+            <ul class="dy-wz">
+                <li><p>文章</p><p>12</p></li>
+                <li><p>标签</p><p>09</p></li>
+                <li><p>日志</p><p>121</p></li>
+            </ul>
+        </div>
+        <div class="info-item">
+            <!-- 显示所有标签 -->
+            {{each tags tag key}}
+            <span class="tag" style="color: {{tag.color}};"><i class="iconfont icon-tag"></i>{{tag.name}}</span>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/block}}

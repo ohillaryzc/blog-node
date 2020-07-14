@@ -1,0 +1,21 @@
+{
+  "name": "node_blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hillary",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "dayjs": "^1.8.6",
+    "formidable": "^1.2.1",
+    "getmac": "^1.4.6",
+    "md5": "^2.2.1",
+    "mysql": "^2.16.0",
+    "uuid": "^3.3.2"
+  }
+}

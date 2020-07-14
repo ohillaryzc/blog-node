@@ -1,0 +1,152 @@
+/* 首页样式 */
+.container{
+    display: flex;
+    justify-content: center;
+    width: 1098px;
+}
+
+/* 左边主体内容 */
+.content{
+    /* 瓜分父级剩余空间 */
+    flex-grow: 1;
+}
+.content .blog-item,
+.info .info-item{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    border-radius: 4px;
+}
+.blog-item .blog-title{
+    font-size: 20px;
+    color: #17233d;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+}
+.blog-title a{
+    color: #515a6e;
+}
+.blog-title a:hover{
+    text-decoration: underline;
+}
+.blog-title span{
+    font-size: 13px;
+    color: #808695;
+}
+.blog-title span.tip{
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background-color: #ff9900;
+    margin-left: 20px;
+    margin-right: 6px;
+}
+.blog-item .blog-item-des,
+.blog-item .blog-time,
+.blog-item .blog-time i{
+    font-size: 12px;
+    color: #808695;
+    line-height: 22px;
+}
+
+.blog-item .blog-time span{
+    margin-right: 16px;
+}
+.blog-item .blog-time i{
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+
+/* 右边简介 */
+@media screen and (max-width: 1102px) {
+    .info{
+        display: none;
+    }
+    .container{
+        width: 768px;
+    }
+}
+
+.info{
+    width: 320px;
+    /* 占位空间由width决定 */
+    flex-basis: auto;
+    /* 吸收超出的空间（这里不吸收） */
+    flex-shrink: 0;
+    margin-left: 10px;
+    box-sizing: border-box;
+    /*text-align: center;*/
+}
+.info .avatar{
+    width: 100px;
+    height: 100px;
+    margin: 12px auto;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.info .name{
+    font-size: 18px;
+    color: #17233d;
+    text-align: center;
+}
+.info .my-motto{
+    font-size: 13px;
+    color: #808695;
+    line-height: 26px;
+    text-align: center;
+}
+.master .dy-wz{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.master .dy-wz li{
+    padding: 0 10px;
+    border-right: 1px solid #dcdee2;
+    color: #808695;
+    text-align: center;
+}
+.master .dy-wz li:last-child{
+    border-right: none;
+}
+.dy-wz li p:nth-child(1){
+    font-size: 13px;
+}
+.dy-wz li p:nth-child(2){
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.info .tag {
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 12px;
+}
+.info .tag i{
+    margin-right: 4px;
+    color: inherit;
+}
+.more{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page{
+    width: 100px;
+    height: 40px;
+    border: 1px solid #eee;
+    text-align: center;
+    line-height: 40px;
+}
+.page a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}

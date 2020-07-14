@@ -1,0 +1,37 @@
+{{extend '/start/node_blog/view/layout.html'}}
+
+{{block 'title'}}{{title}}{{/block}}
+
+{{block 'style'}}
+<link rel="stylesheet" href="/public/css/hopscotch.css">
+<link rel="stylesheet" href="/public/css/detail.css">
+{{/block}}
+
+{{block 'content'}}
+<div class="container">
+    <div class="inner">
+      <p class="title">{{ currentArt.title }}</p>
+      {{@ currentArt.content}}
+      <div class="arts">
+        {{if proArt}}
+        <div class="pro">
+          <a href="{{ '/blog/detail/' + pro.pageNum + '-' + proArt.id + '-' + pro.index }}"> < 上一篇 {{proArt.title}}</a>
+        </div>
+        {{/if}}
+        {{if nextArt}}
+        <div class="next">
+          <a href="{{ '/blog/detail/' + next.pageNum + '-' + nextArt.id + '-' + next.index }}">{{nextArt.title}} 下一篇 > </a>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+    <div id="nav-right">
+    </div>
+</div>
+{{/block}}
+
+{{block 'script'}}
+<script src="/public/js/nav.js"></script>
+<script type="text/javascript" src="http://www.dengzhr.com/wp-content/themes/dengzhr/js/highlight.pack.js"></script>
+<script type="text/javascript" src="http://www.dengzhr.com/wp-content/themes/dengzhr/js/main.js"></script>
+{{/block}}

@@ -1,0 +1,28 @@
+{{extend '/start/node_blog/view/layout.html'}}
+
+{{block 'title'}}{{title}}{{/block}}
+
+{{block 'style'}}
+<link rel="stylesheet" href="/public/css/about.css">
+<link rel="stylesheet" href="/public/css/quill.bubble.css">
+{{/block}}
+
+{{block 'content'}}
+<div class="container">
+    <div class="user">
+        <div class="avatar"><img src="{{ info.avatar_path }}" alt="头像"></div>
+        <p class="name">{{ info.name }}</p>
+        <p class="motto">{{ info.motto }}</p>
+        <p class="introduction">{{ info.position }}</p>
+        <p class="introduction">{{ info.introduction }}</p>
+        <p class="address">{{ info.address }}</p>
+    </div>
+    <div class="inner">
+        <div class="title">网站说明</div>
+        <div class="content ql-editor">{{@ info.page }}</div>
+    </div>
+</div>
+{{/block}}
+
+{{block 'script'}}
+{{/block}}
