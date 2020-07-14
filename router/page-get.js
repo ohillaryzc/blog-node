@@ -10,6 +10,7 @@ let myGlobal = require('../global')
 
 // 第三方模块
 let template = require('art-template')
+template.defaults.root = path.join(__dirname,'../')
 // 处理时间库
 const dayUtil = require('dayjs')
 
@@ -139,7 +140,8 @@ module.exports = (pathname, req, callback) => {
       let file = path.extname(pathname)
       let html = ''
       if (file === '.html') {
-        html = template.render(data.toString(), {title: 'blog index', ...pageData})
+        // html = template.render(data.toString(), {title: 'blog index', ...pageData})
+        html = template(pathname, {title: 'blog index', ...pageData})
       } else {
         html = data
       }

@@ -7,7 +7,7 @@ let connection = mysql.createConnection({
     user: 'root',
     password: 'root',
     database: 'blog',
-    dateStrings:true
+    dateStrings: true
 })
 
 connection.connect()
