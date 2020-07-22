@@ -29,7 +29,7 @@ function updateAbout(req, callback) {
 function findAllAbout(req, callback) {
     dao.findAllAbout((err, result) => {
         if (err) return callback(err, null)
-        callback(null, result)
+        callback(null, {status: 0, data: result})
     })
 }
 

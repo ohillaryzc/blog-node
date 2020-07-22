@@ -41,9 +41,9 @@ http.createServer((req, res) => {
     if (noToken.indexOf(pathname) !== -1) {
       postInterface(pathname, req, res, (err, data) => {
         if (err) {
-          return res.end(JSON.stringify(err))
+          return res.end(JSON.stringify({ error: 1, data: err }))
         }
-        res.end(JSON.stringify(data))
+        res.end(JSON.stringify({ status: data.status, data: data.data, message: data.message }))
       })
     } else if (cookie) {
       cookieData = getCookie(req)

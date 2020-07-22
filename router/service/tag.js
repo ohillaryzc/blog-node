@@ -5,7 +5,7 @@ const dao = require('../../web/dao/index')
 function getTagList(req, callback) {
     dao.getTagList((err, result, fields) => {
         if (err) return callback('{message: "查询失败，稍后再试"}', null)
-        callback(null, result)
+        callback(null, {status: 0, data: result})
     })
 }
 

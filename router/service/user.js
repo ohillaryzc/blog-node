@@ -19,7 +19,7 @@ function findMD5 (req, callback, res) {
         let time = new Date().valueOf()
         let loginTime = new Date(result[0].expire_time).valueOf()
         if (time >= loginTime && result[0].type !== 0) {
-          callback(null, {error: 1, message: '登录码过期'})
+          callback(null, {status: 1, data: null, message: '登录码过期'})
         } else {
           let user = result[0]
           getTokenByUserId(user.id, (err, result) => {
@@ -57,7 +57,7 @@ function findMD5 (req, callback, res) {
           })
         }
       } else {
-        callback(null, {error: 1, message: '无效登录码'})
+        callback(null, {status: 1, data: null, message: '无效登录码'})
       }
     })
   })
@@ -82,7 +82,7 @@ function addMD5 (req, callback) {
           callback(null, result)
         })
       } else {
-        callback(null, {error: 1, message: '登录码已存在'})
+        callback(null, {status: 1, data: null, message: '登录码已存在'})
       }
     })
   })
@@ -106,11 +106,11 @@ function findUserByToken (req, callback) {
           callback(null, { status: 0, data: { id: user.id, type: user.type, name: user.name } })
         })
       } else {
-        callback(null, {error: 1, message: '无效cookie，请重新输入登录码。'})
+        callback(null, {status: 1, data: null, message: '无效cookie，请重新输入登录码。'})
       }
     })
   } else {
-    callback(null, {error: 1, message: '无效cookie，请重新输入登录码。'})
+    callback(null, {status: 1, data: null, message: '无效cookie，请重新输入登录码。'})
   }
 }
 

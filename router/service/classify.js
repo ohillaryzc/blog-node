@@ -5,7 +5,7 @@ const dao = require('../../web/dao/index')
 function getClassifyList(req, callback) {
     dao.getClassifyList((err, result) => {
         if (err) return callback(err, null)
-        callback(null, result)
+        callback(null, {status: 0, data: result})
     })
 }
 

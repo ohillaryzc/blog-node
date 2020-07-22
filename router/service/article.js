@@ -57,7 +57,7 @@ function findAllArticle(req, callback, page) {
         if (err) return callback(err, null)
         dao.findArticleCount((err, count) => {
           if (err) return callback(err, null)
-          callback(null, {list: result, count: count[0].count})
+          callback(null, {status: 0, data: {list: result, count: count[0].count}})
         })
       })
     })

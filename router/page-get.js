@@ -16,7 +16,7 @@ const dayUtil = require('dayjs')
 
 router['/get/about'](null, (err, data) => {
     if (err) throw err
-    data[0] && (myGlobal.info = data[0])
+    data.data[0] && (myGlobal.info = data.data[0])
 })
 
 module.exports = (pathname, req, callback) => {
@@ -49,14 +49,14 @@ module.exports = (pathname, req, callback) => {
 
     router['/get/tag/list'](req, (err, data) => {
       if (err) return callback(err, null)
-      pageData.tags = data
+      pageData.tags = data.data
       setCount()
     })
 
     router['/get/classify/list'](req, (err, data) => {
       if (err) return callback(err, null)
       pageData.classify = []
-      data.forEach(item => {
+      data.data.forEach(item => {
         pageData.classify['C' + item.id] = item
       })
       setCount()

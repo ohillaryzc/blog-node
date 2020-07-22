@@ -24,7 +24,7 @@ function getJSON(req, callback) {
 function getCookie (req) {
   let cookie = req.headers.cookie // string
   let cookieData = {}
-  cookie.split('; ').forEach(item => {
+  cookie && cookie.split('; ').forEach(item => {
     let kvArr = item.split('=')
     cookieData[kvArr[0]] = kvArr[1]
   })
