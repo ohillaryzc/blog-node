@@ -6,6 +6,7 @@ const aboutRouter = require('./service/about')
 const sayingRouter = require('./service/saying')
 const userRouter = require('./service/user')
 const uploadRouter = require('./service/upload')
+const catchJueJin = require('./service/juejin')
 
 module.exports = {
   ...tagRouter,
@@ -14,5 +15,6 @@ module.exports = {
   ...aboutRouter,
   ...sayingRouter,
   ...userRouter,
-  ...uploadRouter
+  ...uploadRouter,
+  ...catchJueJin
 }

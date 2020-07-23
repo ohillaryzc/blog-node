@@ -3,7 +3,7 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const dao = require('../web/dao')
 
-function getJueJinArticle (url) {
+function getJueJinArticle (url, callback) {
   axios.get(url).then(res => {
     const $ = cheerio.load(res.data)
     // console.log($('.article-title').text())
@@ -21,11 +21,13 @@ function getJueJinArticle (url) {
       content: $('.article-content').html(),
       type: '2'
     }
-    dao.addArticle(article, (err, result) => {
-      if (err) return console.log(err)
-      console.log(result)
-    })
+    callback(article)
+    // dao.addArticle(article, (err, result) => {
+    //   if (err) return callback()
+    //   callback(article)
+    // })
   })
 }
 
-getJueJinArticle('https://juejin.im/post/5f0f1a045188252e415f642c')
+module.exports = getJueJinArticle
+// getJueJinArticle('https://juejin.im/post/5f0f1a045188252e415f642c')
