@@ -7,6 +7,7 @@ const sayingRouter = require('./service/saying')
 const userRouter = require('./service/user')
 const uploadRouter = require('./service/upload')
 const catchJueJin = require('./service/juejin')
+const todoRouter = require('./service/todo')
 
 module.exports = {
   ...tagRouter,
@@ -16,5 +17,6 @@ module.exports = {
   ...sayingRouter,
   ...userRouter,
   ...uploadRouter,
-  ...catchJueJin
+  ...catchJueJin,
+  ...todoRouter
 }

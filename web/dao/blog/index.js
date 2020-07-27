@@ -7,7 +7,7 @@ const { connection, getUpdateSQL } = require('../db')
 * @params callback
 * */
 function findAllArticle(page, callback) {
-    connection.query('SELECT * FROM article ORDER BY add_time ASC LIMIT ?, ?', page, callback)
+    connection.query('SELECT * FROM article ORDER BY add_time DESC LIMIT ?, ?', page, callback)
 }
 
 /**

@@ -5,6 +5,7 @@ const article = require('./blog')
 const about = require('./about')
 const saying = require('./saying')
 const user = require('./user')
+const todo = require('./todo')
 
 module.exports = {
     ...tag,
@@ -12,5 +13,6 @@ module.exports = {
     ...article,
     ...about,
     ...saying,
-    ...user
+    ...user,
+    ...todo
 }
