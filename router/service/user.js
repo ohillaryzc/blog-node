@@ -72,14 +72,14 @@ function addMD5 (req, callback) {
   getJSON(req, data => {
     dao.findMD5(md5(data.password), (err, result) => {
       if (err) return callback(err)
-      if (result === 0) {
+      if (result.length === 0) {
         data.password = md5(data.password)
         data.add_time = new Date()
         let expire = new Date().valueOf() + (data.expire_time * 24 * 3600 * 1000)
         data.expire_time = new Date(expire)
         dao.addMD5(data, (err, result) => {
           if (err) return callback(err, null)
-          callback(null, result)
+          callback(null, {status: 0, data: result, message: '添加成功！'})
         })
       } else {
         callback(null, {status: 1, data: null, message: '登录码已存在'})
