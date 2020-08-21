@@ -30,4 +30,6 @@ function getJueJinArticle (url, callback) {
 }
 
 module.exports = getJueJinArticle
-// getJueJinArticle('https://juejin.im/post/5f0f1a045188252e415f642c')
+// getJueJinArticle('https://juejin.im/entry/6844903509628813326', res => {
+//   console.log(res)
+// })
