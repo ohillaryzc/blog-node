@@ -103,7 +103,7 @@ function findUserByToken (req, callback) {
         dao.findMD5ById(cookie.user, (err, users) => {
           if (err) return callback(err, null)
           let user = users[0]
-          callback(null, { status: 0, data: { id: user.id, type: user.type, name: user.name } })
+          callback(null, { status: 0, data: { id: user.id, type: user.type, name: user.name, role: user.role } })
         })
       } else {
         callback(null, {status: 1, data: null, message: '无效cookie，请重新输入登录码。'})
