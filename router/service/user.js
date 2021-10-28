@@ -99,10 +99,14 @@ function findUserByToken (req, callback) {
     getTokenByUserId(cookie.user, (err, result) => {
       if (err) return callback(err, null)
       let token = result[0].token
-      if (token === cookie.token) {
+      const expire = new Date(result[0].expire_time).valueOf()
+      if (token === cookie.token && expire > new Date().valueOf()) {
         dao.findMD5ById(cookie.user, (err, users) => {
           if (err) return callback(err, null)
           let user = users[0]
+          // setTimeout(() => {
+          //   callback(null, { status: 0, data: { id: user.id, type: user.type, name: user.name, role: user.role } })
+          // }, 3000)
           callback(null, { status: 0, data: { id: user.id, type: user.type, name: user.name, role: user.role } })
         })
       } else {
@@ -114,8 +118,39 @@ function findUserByToken (req, callback) {
   }
 }
 
+/**
+ * url: /logout
+ * @param {Object} req
+ * @param {Function} callback
+ * */
+function logout (req, callback) {
+  let cookie = getCookie(req)
+  if (cookie.user && cookie.token) {
+    getTokenByUserId(cookie.user, (err, result) => {
+      if (err) return callback(err, null)
+      let token = result[0].token
+      if (token === cookie.token) {
+        const token = {
+          user_id: cookie.user,
+          token: cookie.token,
+          expire_time: new Date()
+        }
+        updateToken(token, (err, result) => {
+          if (err) return callback(err, null)
+          callback(null, {status: 0, data: null})
+        })
+      } else {
+        callback(null, {status: 1, data: null, message: '操作异常'})
+      }
+    })
+  } else {
+    callback(null, {status: 1, data: null, message: '操作异常'})
+  }
+}
+
 module.exports = {
   '/login': findMD5,
+  '/logout': logout,
   '/add/login': addMD5,
   '/token/login': findUserByToken
 }
